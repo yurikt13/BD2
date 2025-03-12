@@ -31,7 +31,7 @@ create or replace procedure registrar_venta (
 begin
 
     if ids_vehiculos.count = 0 or ids_vehiculos is null then
-        RAISE_APPLICATION_ERROR(-20001, 'Debe proporcionar al menos un vehículo.');
+        RAISE_APPLICATION_ERROR(-20001, 'Debe proporcionar al menos un vehiculo.');
     end if;
 
     -- contar vehiculos disponibles y calcular valor total
@@ -43,7 +43,7 @@ begin
     
     -- validar que todos los vehiculos esten disponibles
     if vh_count != ids_vehiculos.COUNT THEN
-        RAISE_APPLICATION_ERROR(-20002, 'Uno o más vehículos no están disponibles.');
+        RAISE_APPLICATION_ERROR(-20002, 'Uno o mas vehiculos no estan disponibles.');
     END IF;
     
     -- validar que el cliente exista
@@ -68,7 +68,7 @@ begin
         id_estado_vehiculo = 2
         where id_vehiculo in (select column_value from table(ids_vehiculos));
     else
-        RAISE_APPLICATION_ERROR(-20004, 'Falló al registrar la venta.');
+        RAISE_APPLICATION_ERROR(-20004, 'Fallo al registrar la venta.');
     end if;
     
     commit;
