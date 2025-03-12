@@ -1,3 +1,8 @@
+-- FALTA: AGREGAR CONTRAINTS NOT NULL A TODO
+
+-- Permitir outputs
+set serveroutput on;
+
 --clientes
 create table tipos_documentos (
     id_tipo_documento number(4),
@@ -35,8 +40,8 @@ create table ventas (
     fecha_emision date,
     valor_total number(15, 2),
     identificacion varchar2(15),
-    id_estado_factura number(4),
-    vehiculos_vendidos VARCHAR2(500)
+    id_estado_factura number(4)
+    --vehiculos_vendidos VARCHAR2(500)
 );
 alter table ventas
 add constraint pk_ventas_id_factura primary key(id_factura);
@@ -44,10 +49,11 @@ alter table ventas
 add constraint fk_ventas_identificacion foreign key (identificacion) references clientes(identificacion);
 alter table ventas
 add constraint fk_ventas_id_estado_factura foreign key (id_estado_factura) references estados_facturas(id_estado_factura);
-alter table ventas
-drop column vehiculos_vendidos;
+--alter table ventas
+--drop column vehiculos_vendidos;
 
 --seq
+drop sequence seq_ventas_id_factura;
 CREATE SEQUENCE seq_ventas_id_factura
 START WITH 1
 INCREMENT BY 1
@@ -96,11 +102,12 @@ create table estados_vehiculos (
 alter table estados_vehiculos
 add constraint pk_estados_vehiculos_id_estado_vehiculo primary key(id_estado_vehiculo);
 
+select * from estados_vehiculos;
 
 create table vehiculos (
     id_vehiculo number(4),
     id_referencia number(4),
-    año number(4),
+    ano_veh number(4),
     precio number(10, 2),
     id_color number(4),
     vin varchar2(17),
