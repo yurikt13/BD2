@@ -68,7 +68,7 @@ begin
         'usuarios', 
         :NEW.IDENTIFICACION, 
         v_evento, 
-        sysdate, 
+            sysdate,
         v_informacion
     );
 end aud_usuarios;
